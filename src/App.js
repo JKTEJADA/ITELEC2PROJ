@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import LandingPage from './components/LandingPage';
 import { Routes } from 'react-router';
 import People from './components/People';
+import CreateUser from './components/CreateUser'
 
 const CardComponent = ({ person, handleLike, handleDislike }) => (
   <Card style={{ width: '17rem', height: 'auto' }}>
@@ -74,6 +75,10 @@ const App = () => {
   const handleLikedFilterSign = (sign) => {
     setLikedFilterSign(sign);
   };
+  const handleCreateUser = (newUser) => {
+    // Update the People array with the new user
+    setCards([...cards, newUser]);
+  };
 
   const filteredCards = showLiked? likedCards : cards;
   const allCards = filterSign ? filteredCards.filter((card) => card.sign === filterSign) : filteredCards;
@@ -84,10 +89,14 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/create" element={<CreateUser handleCreateUser={handleCreateUser} />} />
         <Route path="/dating" element={
           <div className="App">
             <Row className="mb-4">
               <Col md={6}>
+              <Link to="/create" className="btn btn-primary mr-2">
+                Create User
+              </Link>
                 <Link to="/dating/liked" className="btn btn-success mr-2" onClick={handleShowLiked}>
                   Show Liked
                 </Link>
