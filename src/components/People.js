@@ -15,6 +15,9 @@ const horoscopeSigns = [
   'Capricorn'
 ];
 
+
+
+
 const People = () => ({
   name: `${faker.name.firstName()} ${faker.name.lastName()}`,
   age: faker.datatype.number({ min: 18, max: 80 }),
